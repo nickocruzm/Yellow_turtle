@@ -34,6 +34,7 @@ class Manager:
         deadline = input("deadline: ")
     
         new_task = Task(name,deadline)
+        self.calc_days_left(new_task)
         self.Task_list.append(new_task)
     
     def calc_days_left(self, t):
@@ -42,14 +43,19 @@ class Manager:
         t.update_daysLeft(str(days_left))
     
     def decision(self,choice):
-        options = ["add task","disp all"]
+        options = ["add task","disp all","q"]
+        
+        if choice not in options:
+            print("unsupported action")
+            
+        
         if choice == options[0]:
             self.add_task()
         elif choice == options[1]:
             for t in self.Task_list:
                 print(t)   
         else:
-            print("unsupported action")  
+            print("END")
         
         
         
@@ -67,12 +73,12 @@ if __name__ == '__main__':
         J_Man.decision(choice)
     
     # Update Tasks.daysLeft
-    for t in J_Man.Task_list:
-        J_Man.calc_days_left(t)
+    # for t in J_Man.Task_list:
+    #     J_Man.calc_days_left(t)
     
     # Saves data, While loop must be broken out of else, newly added data will not be saved
     with open('usr_data.json','w') as jFile:
-        json.dump(J_Man.Task_list,jFile,cls=Task_Encoder)
+        json.dump(J_Man.data,jFile,indent=4,cls=Task_Encoder)
 
         
 
