@@ -13,6 +13,7 @@ class Task:
         return f'name: {self.name}, deadline: {self.deadline}, daysleft: {self.daysLeft}'
 
 class Task_Encoder(json.JSONEncoder):
+    
     def default(self,obj):
         d = {"name":obj.name, "deadline":obj.deadline, "daysLeft": obj.daysLeft}
         return d
