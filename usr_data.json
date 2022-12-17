@@ -1,1 +1,6 @@
-[{"name": "new task", "deadline": "2022-12-28", "daysLeft": "10 days, 23:02:47.362316"}]
+{
+
+    "Tasks":[
+        {"name": "new task", "deadline": "2022-12-28", "daysLeft": "10 days, 23:02:47.362316"}
+    ]
+}
