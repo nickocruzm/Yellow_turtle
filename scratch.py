@@ -1,14 +1,13 @@
+from datetime import datetime, date
 
-class A:
-    count = 0
-    def __init__(self,id):
-        self.id = id
-        A.count = A.count + 1
-        self.num = A.count
-        
+time = "2022-12-29"
 
-a1 = A("a1")
-a2 = A("a2")
+t1 = date.today()
 
-print(a1.num)
-print(a2.num)
+
+print(t1)
+
+
+
+
+

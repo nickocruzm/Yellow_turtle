@@ -24,6 +24,11 @@
             "name": "new_tasker",
             "deadline": "2023-2-1",
             "Remaing days": "45 days, 5:40:36.394937"
+        },
+        {
+            "name": "the dateObject",
+            "deadline": "2022-12-29",
+            "Remaing days": "9 days, 13:05:53.012001"
         }
     ]
 }
