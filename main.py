@@ -70,7 +70,7 @@ class Manager:
             self.disp_deadlines()
             
         else:
-            print("END")
+            print("\n")
         
     
         
