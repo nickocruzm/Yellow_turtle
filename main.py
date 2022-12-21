@@ -25,6 +25,8 @@ class Manager:
     def __init__(self,jsonStream):
         self.data = jsonStream
         self.Tasks = self.data["Tasks"]
+        self.update_remainingDays()
+        
     
     def disp_deadlines(self):
         for t in self.Tasks:
@@ -43,6 +45,10 @@ class Manager:
         self.calculate_RemainingDays(new_task)
         self.Tasks.append(new_task)
 
+    def update_remainingDays(self):
+        for t in self.Tasks:
+            self.calculate_RemainingDays(t)
+            
     def calculate_RemainingDays(self, task):
         now = date.today()
         days_left = datetime.strptime(task.deadline) - now
@@ -67,7 +73,7 @@ class Manager:
         else:
             print("END")
         
-        
+    
         
 if __name__ == '__main__':
     
