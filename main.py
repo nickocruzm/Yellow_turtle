@@ -25,7 +25,6 @@ class Manager:
     def __init__(self,jsonStream):
         self.data = jsonStream
         self.Tasks = self.data["Tasks"]
-        self.update_remainingDays()
         
     
     def disp_deadlines(self):
@@ -50,11 +49,11 @@ class Manager:
             self.calculate_RemainingDays(t)
             
     def calculate_RemainingDays(self, task):
-        now = date.today()
-        days_left = datetime.strptime(task.deadline) - now
+        now = datetime.today()
+        days_left = datetime.strptime(task.deadline,"%Y-%m-%d") - now
         task.daysRemaining = str(days_left)
     
-    def decision(self,choice):
+    def eval_choice(self,choice):
         options = ["add task","disp all", "disp deadlines","q"]
         
         if choice not in options:
@@ -77,7 +76,7 @@ class Manager:
         
 if __name__ == '__main__':
     
-# Loads data from usr_data file
+# Load data from usr_data file
     with open('usr_data.json') as savedData:
         data = json.load(savedData)
     
@@ -86,7 +85,7 @@ if __name__ == '__main__':
             
     while(choice != 'q'):
         choice = input("-> ")
-        J_Man.decision(choice)
+        J_Man.eval_choice(choice)
 
     
 # Saves data, While loop must be broken out of else, newly added data will not be saved
