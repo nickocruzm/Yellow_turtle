@@ -88,7 +88,8 @@ if __name__ == '__main__':
         J_Man.eval_choice(choice)
 
     
-# Saves data, While loop must be broken out of else, newly added data will not be saved
+# when choice == q , then data is saved
+# While loop must be broken out of else, newly added data will not be saved
     with open('usr_data.json','w') as jFile:
         json.dump(J_Man.data,jFile,indent=4,cls=Task_Encoder)
 
