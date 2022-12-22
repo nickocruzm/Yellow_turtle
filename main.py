@@ -12,7 +12,6 @@ class Task:
 
 
 class Task_Encoder(json.JSONEncoder):
-    
     def default(self,obj):
         d = {"name":obj.name, "deadline":obj.deadline, "Remaing days": obj.remainingTime}
         return d
@@ -22,8 +21,7 @@ class Manager:
     def __init__(self,jsonStream):
         self.data = jsonStream
         self.Tasks = list()
-        
-    # Translates data from dict objects into Task objects
+        # Translates data from dict objects into Task objects
     def Translate_Data(self):
         for t in self.data['Tasks']:
             t = Task(t['name'], t['deadline'], t['daysLeft'])
