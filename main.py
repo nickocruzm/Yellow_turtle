@@ -14,13 +14,10 @@ class Task:
 class Task_Encoder(json.JSONEncoder):
     
     def default(self,obj):
-        d = {"name":obj.name, "deadline":obj.deadline, "Remaing days": obj.daysRemaining}
+        d = {"name":obj.name, "deadline":obj.deadline, "Remaing days": obj.remainingTime}
         return d
 
-
-    
-             
-        
+       
 class Manager:
     def __init__(self,jsonStream):
         self.data = jsonStream
@@ -31,8 +28,8 @@ class Manager:
         for t in self.data['Tasks']:
             t = Task(t['name'], t['deadline'], t['daysLeft'])
             self.Tasks.append(t)
-            
-    def disp_deadlines(self):
+    
+    def display_deadlines(self):
         for t in self.Tasks:
             print(t['deadline'])
         
@@ -57,9 +54,10 @@ class Manager:
         now = datetime.today()
         days_left = datetime.strptime(task.deadline,"%Y-%m-%d") - now
         days_remaining = str(days_left).split(',')
-        task.daysLeft = days_remaining[0]
+        time_remaining = str()
+        task.remainingTime = days_remaining[0]
     
-    def eval_choice(self,choice):
+    def evaluate(self,choice):
         options = ["add task","disp all", "disp deadlines","update", "q"]
         
         if choice not in options:
@@ -73,7 +71,7 @@ class Manager:
                 print(t)
     
         elif choice == options[2]:
-            self.disp_deadlines()
+            self.display_deadlines()
         
         elif choice == options[3]:
             self.update_remainingDays()
@@ -92,21 +90,21 @@ if __name__ == '__main__':
         
 # type(data) == <class 'dict'>
 
-    J_Man = Manager(data)  
+    manager = Manager(data)  
 
 # Translate date from dict to Tasks  
-    J_Man.Translate_Data()
+    manager.Translate_Data()
     choice = None
             
     while(choice != 'q'):
         choice = input("-> ")
-        J_Man.eval_choice(choice)
+        manager.evaluate(choice)
 
     
 # when choice == q , then data is saved
 # While loop must be broken out of else, newly added data will not be saved
     with open('usr_data.json','w') as jFile:
-        json.dump(J_Man.data,jFile,indent=4,cls=Task_Encoder)
+        json.dump(manager.data,jFile,indent=4,cls=Task_Encoder)
 
         
       
