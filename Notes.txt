@@ -1,0 +1,7 @@
+Need the Days remaining to update when loaded into.
+    [x] Created an update function that works.
+
+    Bugs:
+        1) If we have less than 24 hours before the deadline. 
+        Then our task.timeRemaining is assigned to an hour timeframe
+        instead of days
