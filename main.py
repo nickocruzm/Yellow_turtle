@@ -2,13 +2,13 @@ import json
 from datetime import date, datetime
 
 class Task:
-    def __init__(self,name,deadline):
+    def __init__(self,name,deadline,remainingTime = ""):
         self.name = name            # name of task
         self.deadline = deadline    # deadline YYYY-MM-DD
-        self.daysRemaining = ""
+        self.remainingTime = remainingTime # Will be empty if no arg is passed in
     
     def __str__(self):
-        return f'name: {self.name}, deadline: {self.deadline}, remaining days: {self.daysRemaining}'
+        return f'name: {self.name}, deadline: {self.deadline}, remaining days: {self.remainingTime}'
 
 
 class Task_Encoder(json.JSONEncoder):
@@ -24,12 +24,17 @@ class Task_Encoder(json.JSONEncoder):
 class Manager:
     def __init__(self,jsonStream):
         self.data = jsonStream
-        self.Tasks = self.data["Tasks"]
+        self.Tasks = list()
         
-    
+    # Translates data from dict objects into Task objects
+    def Translate_Data(self):
+        for t in self.data['Tasks']:
+            t = Task(t['name'], t['deadline'], t['daysLeft'])
+            self.Tasks.append(t)
+            
     def disp_deadlines(self):
         for t in self.Tasks:
-            print(t["deadline"])
+            print(t['deadline'])
         
     def add_task(self):
         name = input("Task: ")
@@ -51,10 +56,11 @@ class Manager:
     def calculate_RemainingDays(self, task):
         now = datetime.today()
         days_left = datetime.strptime(task.deadline,"%Y-%m-%d") - now
-        task.daysRemaining = str(days_left)
+        days_remaining = str(days_left).split(',')
+        task.daysLeft = days_remaining[0]
     
     def eval_choice(self,choice):
-        options = ["add task","disp all", "disp deadlines","q"]
+        options = ["add task","disp all", "disp deadlines","update", "q"]
         
         if choice not in options:
             print("unsupported action")
@@ -68,6 +74,9 @@ class Manager:
     
         elif choice == options[2]:
             self.disp_deadlines()
+        
+        elif choice == options[3]:
+            self.update_remainingDays()
             
         else:
             print("\n")
@@ -77,10 +86,16 @@ class Manager:
 if __name__ == '__main__':
     
 # Load data from usr_data file
+
     with open('usr_data.json') as savedData:
-        data = json.load(savedData)
-    
-    J_Man = Manager(data)
+        data = json.load(savedData) # returns dict
+        
+# type(data) == <class 'dict'>
+
+    J_Man = Manager(data)  
+
+# Translate date from dict to Tasks  
+    J_Man.Translate_Data()
     choice = None
             
     while(choice != 'q'):
