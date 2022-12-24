@@ -1,7 +1,7 @@
 import json
 from datetime import datetime, date
 
-options = ["display","add","get","update"]
+options = ["display","add","get","updateAll"]
 data = dict()
 fileName = "data.json"
 
@@ -9,10 +9,25 @@ fileName = "data.json"
 def display():
     print(json.dumps(data,indent=4))
 
-# ...Incomplete...      
-def update():
-    print( data.keys() )
+# ...In Progress...      
+def updateAll():
+    with open(fileName) as jsonFile:
+        new_data = json.load(jsonFile)
+        Task_names = data.keys()
         
+        for name_key in Task_names:
+            new_data[name_key]['RemainingTime'] = get_remainingTime(data[name_key]['Deadline'])
+    
+        data.update(new_data)
+    
+    with open(fileName,'w') as jsonFile:
+        json.dump(data,jsonFile,indent=4)
+    
+
+# ...In progress...
+def get_remainingTime(Deadline: str):
+    return str(datetime.strptime(Deadline,"%Y-%m-%d") - datetime.today())
+       
 def get_task(task_name: str):
     x = json.dumps(data[task_name])
     print(x)
@@ -22,8 +37,7 @@ def add():
     Deadline = input("Deadline: ")
     time_created = datetime.today()
     
-    RemainingTime = str(datetime.strptime(Deadline,"%Y-%m-%d") - time_created)
-    
+    RemainingTime = get_remainingTime(Deadline)
     time_created = str(time_created)
     
     new_data = {
@@ -51,7 +65,7 @@ def evaluate(choice: str):
         task_name = input("get, ")
         get_task(task_name)
     elif choice == options[3]:
-        update()
+        updateAll()
     else:
         quit()
         
