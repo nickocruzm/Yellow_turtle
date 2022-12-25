@@ -1,32 +1,44 @@
 {
+    "W": {
+        "Deadline": "2025-10-09",
+        "time": {
+            "created": {
+                "Year": 2022,
+                "Month": 12,
+                "Day": 25,
+                "Hours": 15,
+                "Minutes": 2
+            },
+            "Remaining": "1018",
+            "completed": 0
+        }
+    },
     "A": {
-        "Deadline": "2022-12-25",
-        "RemainingTime": "23:21:15.989181"
+        "Deadline": "2022-10-19",
+        "time": {
+            "created": {
+                "Year": 2022,
+                "Month": 12,
+                "Day": 25,
+                "Hours": 15,
+                "Minutes": 24
+            },
+            "Remaining": "-68",
+            "completed": 0
+        }
     },
     "B": {
-        "Deadline": "2023-12-10",
-        "RemainingTime": "350 days, 23:21:15.989124"
-    },
-    "C": {
-        "Deadline": "2024-01-11",
-        "RemainingTime": "382 days, 23:21:15.989105"
-    },
-    "D": {
-        "Deadline": "2024-09-03",
-        "RemainingTime": "618 days, 23:21:15.989091"
-    },
-    "E": {
-        "Deadline": "2023-10-13",
-        "RemainingTime": "292 days, 23:21:15.989080"
-    },
-    "F": {
-        "Deadline": "2023-10-09",
-        "RemainingTime": "288 days, 23:21:15.989058",
-        "time_created": "2022-12-23 22:42:37.139287"
-    },
-    "G": {
-        "Deadline": "2022-12-30",
-        "RemainingTime": "4 days, 9:54:47.928281",
-        "time_created": "2022-12-25 14:05:12.064861"
+        "Deadline": "2023-02-06",
+        "time": {
+            "created": {
+                "Year": 2022,
+                "Month": 12,
+                "Day": 25,
+                "Hours": 15,
+                "Minutes": 28
+            },
+            "Remaining": "42",
+            "completed": 0
+        }
     }
 }
