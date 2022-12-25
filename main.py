@@ -1,111 +1,93 @@
 import json
-from datetime import date, datetime
+from datetime import datetime, date
 
-class Task:
-    def __init__(self,name,deadline,remainingTime = ""):
-        self.name = name            # name of task
-        self.deadline = deadline    # deadline YYYY-MM-DD
-        self.remainingTime = remainingTime # Will be empty if no arg is passed in
+options = ["display","add","get","updateAll"]
+data = dict()
+fileName = "data.json"
+
+
+def display():
+    print(json.dumps(data,indent=4))
+
+# ...In Progress...      
+def updateAll():
+    with open(fileName) as jsonFile:
+        new_data = json.load(jsonFile)
+        Task_names = data.keys()
+        
+        for name_key in Task_names:
+            new_data[name_key]['RemainingTime'] = get_remainingTime(data[name_key]['Deadline'])
     
-    def __str__(self):
-        return f'name: {self.name}, deadline: {self.deadline}, remaining days: {self.remainingTime}'
+        data.update(new_data)
+    
+    with open(fileName,'w') as jsonFile:
+        json.dump(data,jsonFile,indent=4)
+    
 
-
-class Task_Encoder(json.JSONEncoder):
-    def default(self,obj):
-        d = {"name":obj.name, "deadline":obj.deadline, "Remaing days": obj.remainingTime}
-        return d
-
+# ...In progress...
+def get_remainingTime(Deadline: str):
+    return str(datetime.strptime(Deadline,"%Y-%m-%d") - datetime.today())
        
-class Manager:
-    def __init__(self,jsonStream):
-        self.data = jsonStream
-        self.Tasks = list()
-        # Translates data from dict objects into Task objects
-    def Translate_Data(self):
-        for t in self.data['Tasks']:
-            t = Task(t['name'], t['deadline'], t['daysLeft'])
-            self.Tasks.append(t)
+def get_task(task_name: str):
+    x = json.dumps(data[task_name])
+    print(x)
     
-    def display_deadlines(self):
-        for t in self.Tasks:
-            print(t['deadline'])
-        
-    def add_task(self):
-        name = input("Task: ")
-        given_deadline = input("Deadline: ")
-        
-        if given_deadline == 'today':
-            deadline = str(date.today())
-        else:
-            deadline = given_deadline
-        
-        new_task = Task(name,deadline)
-        self.calculate_RemainingDays(new_task)
-        self.Tasks.append(new_task)
+def add():
+    task_name = input("task: ")
+    Deadline = input("Deadline: ")
+    time_created = datetime.today()
+    
+    RemainingTime = get_remainingTime(Deadline)
+    time_created = str(time_created)
+    
+    new_data = {
+        task_name:{
+            "Deadline"     : Deadline,
+            "RemainingTime": RemainingTime,
+            "time_created" : time_created
+        } 
+    }
+    
+    with open(fileName,'r') as jf:
+        data = json.load(jf)
+        data.update(new_data)
+    
+    with open(fileName,'w') as jf:
+        json.dump(data,jf,indent=4)
 
-    def update_remainingDays(self):
-        for t in self.Tasks:
-            self.calculate_RemainingDays(t)
-            
-    def calculate_RemainingDays(self, task):
-        now = datetime.today()
-        days_left = datetime.strptime(task.deadline,"%Y-%m-%d") - now
-        days_remaining = str(days_left).split(',')
-        time_remaining = str()
-        task.remainingTime = days_remaining[0]
-    
-    def evaluate(self,choice):
-        options = ["add task","disp all", "disp deadlines","update", "q"]
-        
-        if choice not in options:
-            print("unsupported action")
 
-        if choice == options[0]:
-            self.add_task()
-            
-        elif choice == options[1]:
-            for t in self.Tasks:
-                print(t)
-    
-        elif choice == options[2]:
-            self.display_deadlines()
-        
-        elif choice == options[3]:
-            self.update_remainingDays()
-            
-        else:
-            print("\n")
+def evaluate(choice: str):
+    if choice == options[0]:
+        display()
+    elif choice == options[1]:
+        add()
+    elif choice == options[2]:
+        task_name = input("get, ")
+        get_task(task_name)
+    elif choice == options[3]:
+        updateAll()
+    else:
+        quit()
         
     
-        
+    
+
 if __name__ == '__main__':
     
-# Load data from usr_data file
+    try:
+        with open('data.json') as jsonFile:
+            data = json.load(jsonFile)
+    except Exception as e:
+        print(e)
 
-    with open('usr_data.json') as savedData:
-        data = json.load(savedData) # returns dict
-        
-# type(data) == <class 'dict'>
-
-    manager = Manager(data)  
-
-# Translate date from dict to Tasks  
-    manager.Translate_Data()
-    choice = None
-            
+    
+    choice = input("-> ")
+    
     while(choice != 'q'):
+        evaluate(choice)
         choice = input("-> ")
-        manager.evaluate(choice)
-
     
-# when choice == q , then data is saved
-# While loop must be broken out of else, newly added data will not be saved
-    with open('usr_data.json','w') as jFile:
-        json.dump(manager.data,jFile,indent=4,cls=Task_Encoder)
-
-        
-      
+    
         
     
-    
+        

@@ -1,7 +1,22 @@
-Need the Days remaining to update when loaded into.
-    [x] Created an update function that works.
+Display
+    + get it to look pretty, COMPLETED [x]
+        SOLUTION: print(json.dumps(data,indent=4))
 
-    Bugs:
-        1) If we have less than 24 hours before the deadline. 
-        Then our task.timeRemaining is assigned to an hour timeframe
-        instead of days
+    - does not display newly added data
+
+
+Update
+    - Figure out how to access each item in the json file, without knowing the the keys name.
+    I need to updata a dictionary within a dictionary.  jf
+
+
+Future updates
+
+    - for each task's dictionary, to allow for easier access.
+        
+        time:[
+            'created':
+            'remaining':
+            'complete':
+        ]
+
