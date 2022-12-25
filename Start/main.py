@@ -77,8 +77,8 @@ if __name__ == '__main__':
     try:
         with open('data.json') as jsonFile:
             data = json.load(jsonFile)
-    except:
-        print("error")
+    except Exception as e:
+        print(e)
 
     
     choice = input("-> ")
