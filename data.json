@@ -9,9 +9,10 @@
                 "Hours": 15,
                 "Minutes": 2
             },
-            "Remaining": "1018",
+            "Remaining": "1018 days, 5:47:19.153380",
             "completed": 0
-        }
+        },
+        "Remaining": "1018 days, 5:28:08.234900"
     },
     "A": {
         "Deadline": "2022-10-19",
@@ -23,9 +24,10 @@
                 "Hours": 15,
                 "Minutes": 24
             },
-            "Remaining": "-68",
+            "Remaining": "-68 days, 5:47:19.153353",
             "completed": 0
-        }
+        },
+        "Remaining": "-68 days, 5:28:08.234867"
     },
     "B": {
         "Deadline": "2023-02-06",
@@ -37,8 +39,9 @@
                 "Hours": 15,
                 "Minutes": 28
             },
-            "Remaining": "42",
+            "Remaining": "42 days, 5:47:19.153345",
             "completed": 0
-        }
+        },
+        "Remaining": "42 days, 5:28:08.234857"
     }
 }
