@@ -1,7 +1,6 @@
 import json
 from datetime import datetime, date
 
-options = ["display","add","get","update","completed"]
 data = dict()
 fileName = "test.json"
 
@@ -12,21 +11,6 @@ def evaluate(choice: str):
     func = globals()[choice]
     func()
     
-    # if choice == options[0]:
-    #     display()
-    # elif choice == options[1]:
-    #     add()
-    # elif choice == options[2]:
-    #     task_name = input("\t ")
-    #     get_task(task_name)
-    # elif choice == options[3]:
-    #     update()
-    # elif choice == options[4]:
-    #     pass
-    # else:
-    #     print(f'{choice} is not supported')
-    #     print('\t',options)
- 
 def update():
     with open(fileName) as jsonFile:
         new_data = json.load(jsonFile)
