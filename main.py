@@ -3,28 +3,31 @@ from datetime import datetime, date
 
 options = ["display","add","get","update","completed"]
 data = dict()
-fileName = "data.json"
+fileName = "test.json"
 
 
 # ------------------------   BackEnd    -----------------------------------------------------
 
 def evaluate(choice: str):
-    if choice == options[0]:
-        display()
-    elif choice == options[1]:
-        add()
-    elif choice == options[2]:
-        task_name = input("\t ")
-        get_task(task_name)
-    elif choice == options[3]:
-        updateAll()
-    elif choice == options[4]:
-        pass
-    else:
-        print(f'{choice} is not supported')
-        print('\t',options)
+    func = globals()[choice]
+    func()
+    
+    # if choice == options[0]:
+    #     display()
+    # elif choice == options[1]:
+    #     add()
+    # elif choice == options[2]:
+    #     task_name = input("\t ")
+    #     get_task(task_name)
+    # elif choice == options[3]:
+    #     update()
+    # elif choice == options[4]:
+    #     pass
+    # else:
+    #     print(f'{choice} is not supported')
+    #     print('\t',options)
  
-def updateAll():
+def update():
     with open(fileName) as jsonFile:
         new_data = json.load(jsonFile)
         Task_names = data.keys()
@@ -73,7 +76,6 @@ def add():
     
     Remaining = calc_remainingTime(Deadline)
     created = str(time_created)
-    print(created)
     
     new_data = {
         task_name:{
@@ -108,9 +110,9 @@ def add():
 if __name__ == '__main__':
     
     try:
-        with open('data.json') as jsonFile:
+        with open('test.json') as jsonFile:
             data = json.load(jsonFile)
-        updateAll()
+        update()
     except Exception as e:
         print(e)
 
