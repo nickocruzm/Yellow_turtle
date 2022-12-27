@@ -31,7 +31,7 @@ def updateAll():
         
         
         for name_key in Task_names:
-            new_data[name_key]['Remaining'] = calc_remainingTime(data[name_key]['Deadline'])
+            new_data[name_key]['time']['Remaining'] = calc_remainingTime(data[name_key]['Deadline'])
     
         data.update(new_data)
 
