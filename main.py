@@ -1,7 +1,7 @@
 import json
 from datetime import datetime, date
 
-options = ["displayAll","add","get task","updateAll"]
+options = ["display","add","get","update","completed"]
 data = dict()
 fileName = "data.json"
 
@@ -18,11 +18,13 @@ def evaluate(choice: str):
         get_task(task_name)
     elif choice == options[3]:
         updateAll()
+    elif choice == options[4]:
+        pass
     else:
-        quit()
+        print(f'{choice} is not supported')
+        print('\t',options)
  
 def updateAll():
-    
     with open(fileName) as jsonFile:
         new_data = json.load(jsonFile)
         Task_names = data.keys()
@@ -39,15 +41,17 @@ def updateAll():
 def calc_remainingTime(Deadline: str):
     return str(datetime.strptime(Deadline,"%Y-%m-%d") - datetime.today() )
 
+#TODO: define
 def get_timeCompleted(taskName):
     pass
 
 def format_output(taskName):    
     task = data[taskName]
-    print("\t", taskName, ": ")
-    print("\t\t Deadline:", task['Deadline'])
-    print("\t\t Remaining Time:", task["time"]['Remaining'])
-    
+    line_1 = f" \t {taskName},   Deadline: {task['Deadline']} "
+    line_2 = f"\t\t Remaining Time: {task['time']['Remaining']}"
+    print(line_1)
+    print(line_2)
+
 
 # ------------------------- users choices --------------------------------------------------
 
@@ -116,7 +120,6 @@ if __name__ == '__main__':
     while(choice != 'q'):
         evaluate(choice)
         choice = input("-> ")
-        print("\n")
     
     
         
