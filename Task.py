@@ -1,13 +1,13 @@
 from datetime import datetime
 class Task:
-    count = 0
-    def __init__(self, name: str, deadline: str, tags: list()):
+    count = 1
+    def __init__(self, name: str, deadline: str, tags=list()):
+        self.id = Task.count
         self.name = name
         self.deadline = datetime.strptime(deadline,"%Y-%m-%d")
         self.remainingTime = self.deadline - datetime.today()
         self.tags = tags
-        global count
-        count += 1
+        Task.count += 1
     
     def __str__(self):
         return f'{self.name}, {self.deadline}, {self.remainingTime}'
