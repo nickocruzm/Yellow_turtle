@@ -4,3 +4,4 @@ Notes.txt
 test.json
 .DS_Store
 Testing/
+/__pycache__
