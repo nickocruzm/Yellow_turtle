@@ -1,4 +1,5 @@
 from datetime import datetime
+
 class Task:
     count = 1
     def __init__(self, name: str, deadline: str, tags=list()):
@@ -7,13 +8,14 @@ class Task:
         self.deadline = datetime.strptime(deadline,"%Y-%m-%d")
         self.remainingTime = self.deadline - datetime.today()
         self.tags = tags
+        
         Task.count += 1
     
     def __str__(self):
         return f'id: {self.id}, name: {self.name}, deadline: {self.deadline}, remaining: {self.remainingTime}'
     
     
-class Todo_list:
+class ToDoList:
     def __init__(self, tasks=list()):
         self.Tasks = list(tasks)
     
@@ -32,6 +34,19 @@ class Todo_list:
     def display_all(self):
         for task in self.Tasks:
             print(task)
+    
+    def get_task(self,taskName: str):
+        try:
+            index = self.Tasks.index(taskName)
+            return self.Tasks[index]
+        except:
+            print("TaskName Not Found")
+        
+            
+            
+            
+        
+        
     
     def create_task(self):
         task_name = input("task: ")
