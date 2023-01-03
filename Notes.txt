@@ -1,22 +1,12 @@
-Display
-    + get it to look pretty, COMPLETED [x]
-        SOLUTION: print(json.dumps(data,indent=4))
+01-01-22
+    - Task object is being implemented. 
+    - I need to commit to a design pattern to plan out how I will decoded and encode
+the Task object. 
+    - Need a design pattern to use in general, for the entire program.
+    - Currently main.py file is the functioning file that I am using. Although functional, it is not in a
+state that will allow me to conduct analysis on the data collectted.
 
-    - does not display newly added data
+01-02-22
+    - which object should be defined as the iterator?
 
-
-Update
-    - Figure out how to access each item in the json file, without knowing the the keys name.
-    I need to updata a dictionary within a dictionary.  jf
-
-
-Future updates
-
-    - for each task's dictionary, to allow for easier access.
-        
-        time:[
-            'created':
-            'remaining':
-            'complete':
-        ]
 
