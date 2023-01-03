@@ -10,15 +10,47 @@ class Task:
         Task.count += 1
     
     def __str__(self):
-        return f'{self.name}, {self.deadline}, {self.remainingTime}'
+        return f'id: {self.id}, name: {self.name}, deadline: {self.deadline}, remaining: {self.remainingTime}'
+    
+        
+    
+    
 
  
 
     
-
-# TaskManager
-    # properties are pointing to the appropriate places in memory
+class Todo_list:
+    def __init__(self, tasks=list()):
+        self.Tasks = list(tasks)
     
-        # time_attr = Task['Time']['RemainingTime'], Could be used to update the remaining time.
-        # many more needed.
+    def __iter__(self):
+        self.i = 0
+        return self
+    
+    def __next__(self):
+        if self.i >= len(self.Tasks):
+            raise StopIteration
+        
+        task = self.Tasks[self.i]
+        self.i += 1
+        return task
+    
+    def display_all(self):
+        for task in self.Tasks:
+            print(task)
+    
+    def create_task(self):
+        task_name = input("task: ")
+        Deadline = input("Deadline: ")
+        new_task = Task(task_name,Deadline)
+        
+        self.append_task(new_task)
+    
+    
+    def append_task(self, new_task: Task):
+        self.Tasks.append(new_task)
+        
+        
+        
+    
     
