@@ -12,12 +12,6 @@ class Task:
     def __str__(self):
         return f'id: {self.id}, name: {self.name}, deadline: {self.deadline}, remaining: {self.remainingTime}'
     
-        
-    
-    
-
- 
-
     
 class Todo_list:
     def __init__(self, tasks=list()):
