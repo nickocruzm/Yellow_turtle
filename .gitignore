@@ -1,7 +1,8 @@
-oldd/
-.vscode/
+# cache
+__pycache__/
+Tests/__pycache__
+Tests/.pytest_cache
+
+# local files only
 Notes.txt
 test.json
-.DS_Store
-Testing/
-/__pycache__
