@@ -1,4 +1,3 @@
-import pytest
 import sys
 sys.path.append('..')
 from Task import Task, Todo_list
@@ -16,8 +15,6 @@ def test_iteration():
     for t in todo_list:
         print(t)
 
-
-test_iteration()
 
 
 
