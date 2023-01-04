@@ -1,3 +1,6 @@
-# School_Assistant
+# YELLOW_TURTLE
 
-Help for managing school related events and tasks.
+why "Yellow_Turtle" as the name?
+    Because I'm horrible at coming up with names.
+
+Help for managing events and tasks.
