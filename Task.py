@@ -2,23 +2,31 @@ from datetime import datetime
 
 class Task:
     count = 1
-    def __init__(self, name: str, deadline: str, tags=list()):
+    def __init__(self, name: str, deadline: str, tags=list(), isComplete=False):
         self.id = Task.count
         self.name = name
         self.deadline = datetime.strptime(deadline,"%Y-%m-%d")
         self.remainingTime = self.deadline - datetime.today()
         self.tags = tags
+        self.isComplete = isComplete
         
         Task.count += 1
-    
+            
     def __str__(self):
-        return f'id: {self.id}, name: {self.name}, deadline: {self.deadline}, remaining: {self.remainingTime}'
-    
-    
+        out_idName= f'id: {self.id}, name: {self.name}'
+        out_time = f'deadline: {self.deadline}, remaining: {self.remainingTime}'
+        out_tags = [ t for t in self.tags ]
+        
+        output = f'\n{out_idName}\n\t {out_time}\n\t Tags: {out_tags}\n\n'
+        return output
+
+    def add_tag(self, tag: str):
+        self.tags.append(tag)
+
 class ToDoList:
     def __init__(self, tasks=list()):
         self.Tasks = list(tasks)
-    
+
     def __iter__(self):
         self.i = 0
         return self
@@ -35,19 +43,18 @@ class ToDoList:
         for task in self.Tasks:
             print(task)
     
-    def get_task(self,taskName: str):
+    def get_task(self, taskName: str):
         try:
-            index = self.Tasks.index(taskName)
-            return self.Tasks[index]
+            for task in self.Tasks:
+                if(task.name == taskName):
+                    return task
         except:
             print("TaskName Not Found")
-        
-            
-            
-            
-        
-        
     
+    def update_tags(self, taskName: str, new_tag: str):
+        task = self.get_task(taskName)
+        task.add_tag(new_tag)
+         
     def create_task(self):
         task_name = input("task: ")
         Deadline = input("Deadline: ")
@@ -55,11 +62,9 @@ class ToDoList:
         
         self.append_task(new_task)
     
-    
     def append_task(self, new_task: Task):
         self.Tasks.append(new_task)
-        
-        
+      
         
     
     
