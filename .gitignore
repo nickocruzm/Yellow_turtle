@@ -1,5 +1,13 @@
-testData.py
-oldd/
 .vscode/
+.DS_Store/
+.pytest_cache/
+Docs.md
+
+# cache
+__pycache__/
+Testing/__pycache__
+Testing/.pytest_cache
+
+# local files only
 Notes.txt
 test.json

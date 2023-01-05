@@ -1,21 +1,19 @@
 import json
-from datetime import datetime, date
+from datetime import datetime
 
 data = dict()
 fileName = "test.json"
-
 
 # ------------------------   BackEnd    -----------------------------------------------------
 
 def evaluate(choice: str):
     func = globals()[choice]
     func()
-    
+ 
 def update():
     with open(fileName) as jsonFile:
         new_data = json.load(jsonFile)
         Task_names = data.keys()
-        
         
         for name_key in Task_names:
             new_data[name_key]['time']['Remaining'] = calc_remainingTime(data[name_key]['Deadline'])
@@ -46,7 +44,7 @@ def get_RemainingTime(task_key):
     return str(data[task_key]['Remaining'])
 
 def get_task(task_name: str):
-    x = json.dumps(data[task_name],indent=4)
+    # x = json.dumps(data[task_name],indent=4)
     format_output(task_name)
         
 def display():
@@ -56,6 +54,11 @@ def display():
 def add():
     task_name = input("task: ")
     Deadline = input("Deadline: ")
+    # tags = list()
+    # tags_in = input("input Tags: ")
+    # while(tags_in != '\n'):
+    #     tags.append(tags_in)
+    #     tags_in = input()
     time_created = datetime.today()
     
     Remaining = calc_remainingTime(Deadline)
@@ -63,22 +66,31 @@ def add():
     
     new_data = {
         task_name:{
-            
-            "Deadline" : Deadline,
-            
-            "time": { 
-                "created"  : {
-                    'Year' : time_created.year,
-                    'Month': time_created.month,
-                    'Day'  : time_created.day,
-                    'Hours': time_created.hour,
-                    'Minutes': time_created.minute
-                },
-                "Remaining": Remaining,
-                "completed": 0
-            }
+            "is_complete": 0,
+            "Deadline": Deadline,
+            "RemainingTime": Remaining,
+            "Tags": []
         }
     }
+    
+    # new_data = {
+    #     task_name:{
+            
+    #         "Deadline" : Deadline,
+            
+    #         "time": { 
+    #             "created"  : {
+    #                 'Year' : time_created.year,
+    #                 'Month': time_created.month,
+    #                 'Day'  : time_created.day,
+    #                 'Hours': time_created.hour,
+    #                 'Minutes': time_created.minute
+    #             },
+    #             "Remaining": Remaining,
+    #             "completed": 0
+    #         }
+    #     }
+    # }
     
     
     with open(fileName,'r') as jf:
