@@ -1,6 +1,8 @@
 .vscode/
 .DS_Store/
 .pytest_cache/
+Docs.md
+
 # cache
 __pycache__/
 Testing/__pycache__
