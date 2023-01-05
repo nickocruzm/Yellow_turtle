@@ -2,15 +2,23 @@ from datetime import datetime
 
 class Task:
     count = 1
-    def __init__(self, name: str, deadline: str, tags=list(), isComplete=False):
-        self.id = Task.count
-        self.name = name
-        self.deadline = datetime.strptime(deadline,"%Y-%m-%d")
-        self.remainingTime = self.deadline - datetime.today()
+    def __init__(self, name: str, deadline, tags=list(), isComplete=False):
         self.tags = tags
+        self.name = name
+        self.id = Task.count
+        Task.count += 1
+        
         self.isComplete = isComplete
         
-        Task.count += 1
+        if ':' in deadline:
+            d_list = deadline.split(' ')
+            deadline = d_list[0]
+         
+        self.deadline = datetime.strptime(deadline,"%Y-%m-%d")
+        self.remainingTime = self.deadline - datetime.today()
+        
+    def __iter__(self):
+        return self
             
     def __str__(self):
         out_idName= f'id: {self.id}, name: {self.name}'
@@ -22,7 +30,7 @@ class Task:
 
     def add_tag(self, tag: str):
         self.tags.append(tag)
-
+    
 class ToDoList:
     def __init__(self, tasks=list()):
         self.Tasks = list(tasks)
