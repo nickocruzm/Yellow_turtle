@@ -22,10 +22,18 @@ def test_updateTags():
     todoList.update_tags("task_3", "TestData")
     
 
-def test_manager():
+def test_Simplereading():
     man = Manager("../test.json")
     man.read()
-    task_list = list( man.data_to_Task() )
+    task_list = list( man.json_to_Task() )
+    
+    for t in task_list:
+        print(t)
+
+def test_readingToList():
+    man = Manager("../test.json")
+    man.read_to_pd()
+    task_list = man.json_to_ToDoList()
     
     for t in task_list:
         print(t)
