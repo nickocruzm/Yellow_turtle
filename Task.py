@@ -2,18 +2,20 @@ from datetime import datetime
 
 class Task:
     count = 1
-    def __init__(self, name: str, deadline, tags=list(), isComplete=False):
-        self.tags = tags
-        self.name = name
+    def __init__(self, name: str, deadline: str, tags=list(), isComplete=False):
         self.id = Task.count
         Task.count += 1
+        
+        self.tags = tags
+        self.name = name
+
         
         self.isComplete = isComplete
         
         if ':' in deadline:
             d_list = deadline.split(' ')
             deadline = d_list[0]
-         
+
         self.deadline = datetime.strptime(deadline,"%Y-%m-%d")
         self.remainingTime = self.deadline - datetime.today()
         
@@ -51,7 +53,7 @@ class ToDoList:
         for task in self.Tasks:
             print(task)
     
-    def get_task(self, taskName: str):
+    def getTask(self, taskName: str):
         try:
             for task in self.Tasks:
                 if(task.name == taskName):
@@ -60,7 +62,7 @@ class ToDoList:
             print("TaskName Not Found")
     
     def update_tags(self, taskName: str, new_tag: str):
-        task = self.get_task(taskName)
+        task = self.getTask(taskName)
         task.add_tag(new_tag)
          
     def create_task(self):

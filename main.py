@@ -71,28 +71,7 @@ def add():
             "RemainingTime": Remaining,
             "Tags": []
         }
-    }
-    
-    # new_data = {
-    #     task_name:{
-            
-    #         "Deadline" : Deadline,
-            
-    #         "time": { 
-    #             "created"  : {
-    #                 'Year' : time_created.year,
-    #                 'Month': time_created.month,
-    #                 'Day'  : time_created.day,
-    #                 'Hours': time_created.hour,
-    #                 'Minutes': time_created.minute
-    #             },
-    #             "Remaining": Remaining,
-    #             "completed": 0
-    #         }
-    #     }
-    # }
-    
-    
+    }    
     with open(fileName,'r') as jf:
         data = json.load(jf)
         data.update(new_data)

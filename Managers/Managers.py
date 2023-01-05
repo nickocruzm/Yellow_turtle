@@ -4,19 +4,20 @@ import pandas as pd
 import json
 from Task import Task,ToDoList
 
+class PDManager:
+    def read_to_pd(self):
+        self.data = pd.read_json(self.fileName)
+    
 
-
-class Manager:
+class JSONManager:
     def __init__(self,fileName):
         self.fileName = fileName
     
-    # Managing the Load process 
+
     def read_to_default(self):
         with open(self.fileName,'r') as r_jfile:
             self.data = json.load(r_jfile)
-            
-    def read_to_pd(self):
-        self.data = pd.read_json(self.fileName)
+
         
         
     def json_to_Task(self) -> Task:
@@ -64,18 +65,8 @@ class Manager:
         with open(self.fileName,'w') as wf:
             json.dump(data,wf,indent=4)
         
+
     
         
-man = Manager("test.json")
-man.read_to_default()
-task_list = man.json_to_ToDoList()
-
-for t in task_list:
-    print(t) 
-    
-man.list_to_json(task_list)
-            
-
-
 
 
