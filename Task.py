@@ -9,7 +9,6 @@ class Task:
         self.tags = tags
         self.name = name
 
-        
         self.isComplete = isComplete
         
         if ':' in deadline:
@@ -33,6 +32,10 @@ class Task:
     def add_tag(self, tag: str):
         self.tags.append(tag)
     
+    def completed(self):
+        self.isComplete = True
+        self.completed = datetime.today()
+
 class ToDoList:
     def __init__(self, tasks=list()):
         self.Tasks = list(tasks)
@@ -74,7 +77,13 @@ class ToDoList:
     
     def append_task(self, new_task: Task):
         self.Tasks.append(new_task)
-      
-        
-    
-    
+
+    def sort(self):
+        Completed_Tasks = list()
+        for t in self.Tasks:
+            if(t.isComplete):
+                Completed_Tasks.append(t)
+            
+            
+                
+            

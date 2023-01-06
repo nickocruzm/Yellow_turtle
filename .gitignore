@@ -9,5 +9,4 @@ Testing/__pycache__
 Testing/.pytest_cache
 
 # local files only
-Notes.txt
 test.json

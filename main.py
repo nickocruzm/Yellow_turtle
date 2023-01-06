@@ -1,5 +1,7 @@
 import json
 from datetime import datetime
+from Managers.Managers import Manager,jsonConverter
+from Task import ToDoList, Task
 
 data = dict()
 fileName = "test.json"
@@ -7,7 +9,7 @@ fileName = "test.json"
 # ------------------------   BackEnd    -----------------------------------------------------
 
 def evaluate(choice: str):
-    func = globals()[choice]
+    func = ToDoList.__dict__[choice]
     func()
  
 def update():
@@ -83,20 +85,17 @@ def add():
 #--------------------------interface --------------------------------------------------------
 
 if __name__ == '__main__':
+    manager = Manager('test.json')
+    manager.load()
     
-    try:
-        with open('test.json') as jsonFile:
-            data = json.load(jsonFile)
-        update()
-    except Exception as e:
-        print(e)
-
     
-    choice = input("-> ")
-    print("\n")
-    while(choice != 'q'):
-        evaluate(choice)
-        choice = input("-> ")
+    
+    
+    
+    
+    
+        
+    
     
     
         

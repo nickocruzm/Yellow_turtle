@@ -11,3 +11,9 @@ todoList = ToDoList(tasks)
 
 def test_getTask():
     assert todoList.getTask('task_2') == t2
+    
+def test_updateTags():
+    new_tag = 'School'
+    todoList.update_tags('task_2',new_tag)
+    assert new_tag in todoList.getTask('task_2').tags
+    

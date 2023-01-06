@@ -1,7 +1,7 @@
 import sys
 sys.path.append('..')
 from Task import Task, ToDoList
-from Managers.Managers import JSONManager
+from Managers.Managers import jsonConverter
 
 # dumby data
 t1 = Task("task_1", "2023-10-11")
@@ -19,7 +19,7 @@ def test_updateTags():
     
 
 def test_Simplereading():
-    man = JSONManager("../test.json")
+    man = jsonConverter("../test.json")
     man.read()
     task_list = list( man.json_to_Task() )
     
@@ -27,7 +27,7 @@ def test_Simplereading():
         print(t)
 
 def test_readingToList():
-    man = JSONManager("../test.json")
+    man = jsonConverter("../test.json")
     man.read_to_pd()
     task_list = man.json_to_ToDoList()
     
@@ -35,8 +35,8 @@ def test_readingToList():
         print(t)
 
 def test_list_to_json():
-    man = JSONManager("test.json")
-    man.read_to_default()
+    man = jsonConverter("test.json")
+    man.read_in()
     task_list = man.json_to_ToDoList()
 
     for t in task_list:
