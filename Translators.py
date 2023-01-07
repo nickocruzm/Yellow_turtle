@@ -47,12 +47,12 @@ class JSON_Translator:
                         "deadline":str(t.deadline),
                         "remainingTime":str(t.remainingTime),
                         "tags": t.tags
+                        
                     } 
                 }
-                
                 if(t.isComplete):
                     task[t.name]['isComplete'] = True
-                    task[t.name]['complete'] = t.completed
+                    task[t.name]['completed'] = t.completed
                 
                 data.update(task)
         

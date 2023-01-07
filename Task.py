@@ -34,7 +34,7 @@ class Task:
     
     def completed(self):
         self.isComplete = True
-        self.completed = datetime.today()
+        self.completed = str(datetime.today())
 
 class ToDoList:
     def __init__(self, tasks=list()):
