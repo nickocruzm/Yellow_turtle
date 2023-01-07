@@ -74,7 +74,11 @@ class ToDoList:
         new_task = Task(task_name,Deadline)
         
         self.append_task(new_task)
-    
+
+    def task_completed(self, taskName: str):
+        t = self.getTask(taskName)
+        t.completed()
+
     def append_task(self, new_task: Task):
         self.Tasks.append(new_task)
 
