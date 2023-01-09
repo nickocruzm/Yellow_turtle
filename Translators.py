@@ -58,3 +58,4 @@ class JSON_Translator:
         
         with open(self.fileName,'w') as wf:
             json.dump(data,wf,indent=4)
+    
