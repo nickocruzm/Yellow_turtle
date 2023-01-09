@@ -1,10 +1,9 @@
 from Headers import *
 
-class PDManager:
-    def read_to_pd(self):
-        self.data = pd.read_json(self.fileName)
-    
-        
+# class PDManager:
+#     def read_to_pd(self):
+#         self.data = pd.read_json(self.fileName)
+
 class Manager:
     def __init__(self, fileName):
         self.fileName = fileName
