@@ -3,11 +3,11 @@ from datetime import datetime
 class Task:
     count = 1
     def __init__(self, name: str, deadline: str, tags=list(), isComplete=False):
+        self.name = name
         self.id = Task.count
         Task.count += 1
         
         self.tags = tags
-        self.name = name
 
         self.isComplete = isComplete
         
